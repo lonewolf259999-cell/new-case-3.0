@@ -199,7 +199,7 @@ async function processSheetBatch(list, msg, config, isDel = false, incBonus = tr
                     console.log(`Bonus ${isDel ? 'ลด' : 'เพิ่ม'}: ${p.nickname} ${oldBonus} →  ${newBonus}`);
                 }
             } else if (!isDel) {
-                const newR = [p.nickname, p.username, '0', '0', '0', '0', '0'];
+                const newR = [p.nickname, p.username, '', '', '', '', ''];
                 if (!onlyBonus) newR[chInfo.idx] = '1';
                 if (incBonus && p.id === list[0].id && (msg.channel.id === config.CHANNELS.KADEE || msg.channel.id === config.CHANNELS.CAR)) newR[4] = '1';
                 rows.push(newR);
