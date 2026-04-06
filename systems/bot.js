@@ -150,7 +150,11 @@ function getTagsFromContent(message) {
 
 function addPersonToList(list, m) {
     if (!list.some(p => p.id === m.id)) {
-        list.push({ id: m.id, nickname: (m.nickname || m.user.displayName || m.user.username).trim() });
+        list.push({ 
+            id: m.id, 
+            nickname: (m.nickname || m.user.displayName || m.user.username).trim(),
+            username: m.user.username 
+        }); 
     }
 }
 
@@ -195,7 +199,7 @@ async function processSheetBatch(list, msg, config, isDel = false, incBonus = tr
                     console.log(`Bonus ${isDel ? 'ลด' : 'เพิ่ม'}: ${p.nickname} ${oldBonus} →  ${newBonus}`);
                 }
             } else if (!isDel) {
-                const newR = [p.nickname, '', '0','0','0','0','0'];
+                const newR = [p.nickname, p.username, '0', '0', '0', '0', '0'];
                 if (!onlyBonus) newR[chInfo.idx] = '1';
                 if (incBonus && p.id === list[0].id && (msg.channel.id === config.CHANNELS.KADEE || msg.channel.id === config.CHANNELS.CAR)) newR[4] = '1';
                 rows.push(newR);
