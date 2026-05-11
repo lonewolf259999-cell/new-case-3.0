@@ -4,6 +4,7 @@ const { initBot } = require('./systems/bot.js');
 const { initCommands } = require('./systems/commands.js');
 const { handleInteractions } = require('./interactionHandler.js');
 const { loadConfigFromSheets } = require('./configManager.js');
+const { initializeLogListener } = require('./systems/logtime.js');
 const http = require('http');
 const https = require('https');
 
@@ -25,6 +26,7 @@ async function startApp() {
     initBot(client, config);
     initCommands(client, config);
     handleInteractions(client, config);
+    initializeLogListener(client);
 
     client.login(process.env.DISCORD_TOKEN);
 }
