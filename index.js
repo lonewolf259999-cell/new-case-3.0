@@ -5,6 +5,7 @@ const { initCommands } = require('./systems/commands.js');
 const { handleInteractions } = require('./interactionHandler.js');
 const { loadConfigFromSheets } = require('./configManager.js');
 const { initializeLogListener } = require('./systems/logtime.js');
+const { initializeWelcomeModule } = require('./systems/welcome.js');
 const http = require('http');
 const https = require('https');
 
@@ -27,6 +28,7 @@ async function startApp() {
     initCommands(client, config);
     handleInteractions(client, config);
     initializeLogListener(client);
+    initializeWelcomeModule(client);
 
     client.login(process.env.DISCORD_TOKEN);
 }
